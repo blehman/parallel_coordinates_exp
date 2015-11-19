@@ -119,12 +119,15 @@ function brush() {
   var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
       extents = actives.map(function(p) { 
         return y[p].brush.extent(); });
+  var ngram_array=[]
   foreground.style("display", function(d) {
     return actives.every(function(p, i) {
       if (extents[i][0] <= d[p] && d[p] <= extents[i][1]){
-        console.log(d.name)
+        ngram_array.push(d.name)
       }
       return extents[i][0] <= d[p] && d[p] <= extents[i][1];
     }) ? null : "none";
+
+    console.log(ngram_array)
   });
 }
